@@ -1,0 +1,138 @@
+.booking-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.movie-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-info img {
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.theatre-info {
+  flex: 2;
+  padding-left: 20px;
+}
+
+.theatre-info h3 {
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.facilities {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.show-times {
+  margin: 20px 0;
+}
+
+.time-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.time-slots button {
+  flex: 0 0 auto;
+  min-width: 120px;
+  margin: 0;  /* Remove existing margin */
+  padding: 10px 20px;
+  border: 1px solid #2ecc71;
+  background: #2ecc71;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+}
+
+.time-slots button:hover {
+  background: #27ae60;
+}
+
+.time-slots button.selected {
+  background: #27ae60;
+  border-color: #27ae60;
+  box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+}
+
+.seat-selection {
+  margin: 20px 0;
+}
+
+.seat-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: white;
+  background: #2ecc71;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+.seat-counter button {
+  padding: 5px 15px;
+  font-size: 18px;
+  background: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.seat-counter button:disabled {
+  background: #ccc;
+}
+
+.seat-counter span {
+  color: white;
+  font-weight: 500;
+  min-width: 80px;
+  text-align: center;
+}
+
+.book-button {
+  width: 100%;
+  padding: 15px;
+  background: #e21b24;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.book-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.seats-info {
+  display: block;
+  font-size: 0.8em;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.8);
+}
