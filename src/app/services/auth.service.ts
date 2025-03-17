@@ -28,4 +28,8 @@ export class AuthService {
       email: ''
     };
   }
+
+  getCurrentAuthStatus(): boolean {
+    return this.isAuthenticated.getValue();
+  }
 }
