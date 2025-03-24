@@ -1,0 +1,45 @@
+name: Main Docker Workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Docker image tag (default: latest)'
+        required: false
+        default: 'latest'
+      environment:
+        description: 'Deployment environment'
+        required: false
+        default: 'actions'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+          - actions
+      build_configuration:
+        description: 'Build configuration'
+        required: false
+        default: 'production'
+        type: choice
+        options:
+          - Debug
+          - production
+
+jobs:
+  docker_build_push:
+    uses: ./.github/workflows/reusedepoly.yml
+    with:
+      image_name: 'bookmymovie'
+      dockerhub_username: 'shriram11'
+      image_tag: ${{ github.event.inputs.image_tag || 'latest' }}
+      environment: ${{ github.event.inputs.environment || 'actions' }}
+      build_configuration: ${{ github.event.inputs.build_configuration || 'production' }}
+      node_version: '18'
+    secrets:
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
