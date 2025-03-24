@@ -1,0 +1,58 @@
+<!-- Template for the seat component -->
+<!-- Author: Uzair Ahmed -->
+<div class="container">
+    <main class="innerContainer">
+        <div class="movie">
+            <h3 class="movieTitle">{{movieTitle}}</h3>
+            <div class="movieDetails">{{screen}} - {{time}}</div>
+        </div>
+
+        <!-- Updated legend bar -->
+        <div class="legend">
+            <div class="legend-box free">
+                <div class="box"></div> Available
+            </div>
+            <div class="legend-box reserved">
+                <div class="box"></div> Reserved
+            </div>
+            <div class="legend-box selected">
+                <div class="box"></div> Selected
+            </div>
+        </div>
+
+        <p class="font14 marginTop5">SCREEN THIS WAY</p>
+        <div class="screen"></div>
+
+        <!-- Updated seating grid -->
+        <div class="seating-grid">
+            <div *ngFor="let row of rows" class="seat-row">
+                <span class="row-label">{{row}}</span>
+                <div *ngFor="let col of cols" 
+                     class="seat-box"
+                     [ngClass]="getStatus(row + col)"
+                     (click)="seatClicked(row + col)">
+                     {{col}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Structural directive - only visible on selection -->
+        <div *ngIf="selected.length > 0" class="font14 marginTB10">
+            <div class="wordWrap">SEATS RESERVED : {{selected.length}}</div>
+            <div>PRICE(Rs.) : {{ticketPrice}} * {{selected.length}} = {{ticketPrice*selected.length}} </div>
+            <div>CONVENIENCE FEE (Rs.) :{{convFee}}</div>
+            <div>TOTAL (Rs.): {{ticketPrice * selected.length + convFee}}</div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="buttonBar marginTop5">
+            <button (click)="cancel()" [disabled]="isloading" class="btn btn-primary btn-sm me-2">Cancel Booking</button>
+            <button (click)="clearSelected()" [disabled]="selected.length === 0 || isloading" class="btn btn-primary btn-sm me-2">Clear Selection</button>
+            <button (click)="showSelected()" [disabled]="selected.length != requiredSeats || isloading" class="btn btn-success btn-sm">
+                <span *ngIf="!isloading">Buy Tickets</span>
+                <span *ngIf="isloading" class="spinner"></span>
+            </button>
+            
+        </div>        
+    </main>     
+</div>

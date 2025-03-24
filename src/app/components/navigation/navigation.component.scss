@@ -1,0 +1,113 @@
+.navbar {
+  background-color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link {
+  color: #ffffff !important;
+  
+  &:hover, &.active {
+    color: #28a745 !important;
+  }
+}
+
+.btn-custom {
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  
+  &:hover {
+    background-color: #218838;
+    color: #ffffff;
+  }
+}
+
+.mov{
+  color: #ffffff;
+  border: none;
+  
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.navbar-brand {
+  color: #ffffff !important;
+}
+
+.form-control {
+  border-color: #28a745;
+  
+  &:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+  }
+}
+
+.city-selector {
+  margin-right: 1rem;
+  
+  .form-select {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #28a745;
+    
+    &:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+    }
+    
+    option {
+      background-color: #000000;
+      color: #ffffff;
+    }
+  }
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.close-popup {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.auth-buttons {
+  margin-left: 10px;
+}
+
+.city-dialog {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  min-width: 300px;
+  max-width: 500px;
+  text-align: center;
+
+  h3 {
+    color: #333;
+  }
+}
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}

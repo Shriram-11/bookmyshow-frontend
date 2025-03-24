@@ -1,0 +1,147 @@
+.theatre-list-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+
+  h2 {
+    color: #f0eaea;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-left: 4px solid #f84464;
+    padding-left: 1rem;
+  }
+}
+#backbtn {
+  position: absolute; /* This allows the button to be positioned based on the closest positioned ancestor element. */
+  top: 70px; /* Adjust these values as needed based on your layout */
+  left: 10px;
+  padding: 10px 20px; /* Creates a rectangular button appearance */
+  border-radius: 15px; /* Rounds the corners of the button */
+  border: 2px solid #007bff; /* Matches the outline primary color */
+  background-color: transparent; /* Keeps the button's background transparent */
+  color: #007bff; /* Sets the text color to match the outline primary color */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-family: Arial, sans-serif; /* Optional: sets the font style */
+  text-align: center;
+  display: inline-block;
+}
+
+#backbtn:hover {
+  background-color: #007bff; /* Changes the background on hover */
+  color: white; /* Changes the text color on hover for better contrast */
+}
+.theatre-cards {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.theatre-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  }
+
+  .theatre-info {
+    margin-bottom: 1.2rem;
+
+    h3 {
+      font-size: 1.4rem;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      i {
+        color: #f84464;
+        font-size: 1.2rem;
+      }
+    }
+
+    .address {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      padding-left: 1.8rem;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 1.2rem;
+        height: 1px;
+        background: #f84464;
+      }
+    }
+  }
+
+  .show-times {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #eee;
+
+    .show-time {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 0.8rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover:not(.disabled) {
+        background: #f84464;
+        border-color: #f84464;
+        color: white;
+        transform: scale(1.02);
+
+        .seats {
+          color: rgba(255,255,255,0.9) !important;
+        }
+      }
+
+      .time {
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .seats {
+        font-size: 0.8rem;
+        color: #666;
+        transition: color 0.2s ease;
+
+        &.full {
+          color: #f84464;
+        }
+      }
+
+      &.disabled {
+        opacity: 0.6;
+        background: #f5f5f5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .theatre-list-container {
+    padding: 0 1rem;
+  }
+
+  .show-times {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+  }
+}

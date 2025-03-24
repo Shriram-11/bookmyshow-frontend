@@ -1,0 +1,73 @@
+<!-- app.component.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="mov">BookMyMovie</a>
+    <div class="city-selector d-lg-none me-2" *ngIf="shouldShowCitySelector()">
+      <button class="btn btn-outline-light btn-sm" (click)="showCityDialog = true">
+        {{ selectedCity }} <i class="fas fa-chevron-down ms-1"></i>
+      </button>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngFor="let item of navItems">
+            <a class="nav-link" [routerLink]="item.url" [routerLinkActive]="'active'">{{ item.name }}</a>
+        </li>
+      </ul>
+      <div class="ms-auto d-flex align-items-center gap-2">
+        
+        <div class="city-selector d-none d-lg-block" *ngIf="shouldShowCitySelector()">
+          <button class="btn btn-outline-light" (click)="showCityDialog = true">
+            {{ selectedCity }} <i class="fas fa-chevron-down ms-1"></i>
+          </button>
+        </div>
+       
+        <div class="auth-buttons">
+          @if (!(isLoggedIn)) {
+            <button (click)="showLogin()" class="btn btn-outline-light me-2">Login</button>
+            <button (click)="showSignup()" class="btn btn-primary">Sign Up</button>
+          } @else {
+            <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
+          }
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- City Selection Dialog -->
+@if (showCityDialog) {
+  <div class="popup-overlay">
+    <div class="city-dialog">
+      <h3 class="mb-4">Select your city</h3>
+      <button class="close-popup" (click)="showCityDialog = false">&times;</button>
+      <div class="city-grid">
+        @for (city of cities; track city) {
+          <button 
+            class="btn btn-outline-primary m-2" 
+            (click)="selectInitialCity(city)"
+            *ngIf="city !== 'All'">
+            {{ city }}
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Popup Overlays -->
+@if (showLoginPopup) {
+  <div class="popup-overlay">
+    <app-login />
+    <button class="close-popup" (click)="showLoginPopup = false">&times;</button>
+  </div>
+}
+@if (showSignupPopup) {
+  <div class="popup-overlay">
+    <app-signup />
+    <button class="close-popup" (click)="showSignupPopup = false">&times;</button>
+  </div>
+}

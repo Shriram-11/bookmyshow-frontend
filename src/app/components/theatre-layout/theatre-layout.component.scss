@@ -1,0 +1,221 @@
+/* CSS Helpers */
+.font14 {
+    font-size: 14px;
+}
+.font16 {
+    font-size: 16px;
+}
+.marginTop5 {
+    margin-top: 5px;
+}
+.marginTB10 {
+    margin: 10px 0px;
+}
+.wordWrap {
+    word-break: break-all;
+}
+/* End CSS Helpers */
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    
+    .innerContainer {
+        text-align: center;
+    }
+
+    .screen {
+        background: #ccc;
+        height: 5px;
+        border-radius: 5px;
+        margin: 15px auto;
+        width: 70%;
+    }
+
+    .seat {
+        margin: 3px;
+        display: inline-block;
+        cursor: pointer;
+        padding: 5px;
+
+        span {
+            font-size: 28px;
+            display: inline-block;
+        }
+    }
+}
+
+.innerContainer {
+    color: #fff;
+    text-align: center;
+}
+.movie {
+    margin: -10px -5px 10px -5px;
+    height: 70px;
+    background: hsla(216, 81%, 53%, 0.65);   
+}
+.movieDetails {
+    font-size: 15px;
+    margin-top: -3px;
+}
+.movieTitle {
+    font-size: 20px;
+    padding-top: 10px;
+    margin-top: -3px;
+}
+.seat {
+    padding-right: 5px;
+}
+
+.legend {
+    font-size: 14px;
+}
+.legend > .padding-left {
+    padding-left: 15px;
+}
+.screen {
+    background: hsla(216, 72%, 50%, 0.65);
+    height: 3px;
+    border-radius: 15px;
+    margin: -5px 50px 10px;
+    box-shadow: 0px 3px 6px #fff;
+}
+.reservedSeat {
+    color: #ff0000 !important; // Red
+}
+.selectedSeat {
+    color: #ffd700 !important; // Gold
+}
+.freeSeat {
+    color: #44b449 !important; // Green
+}
+
+.seat-row {
+    margin: 8px 0;
+    
+    // Add row label styling
+    > span:first-child {
+        margin-right: 10px;
+        display: inline-block;
+        width: 20px;
+        text-align: right;
+        color: white;
+    }
+}
+
+.seat {
+    padding: 5px;
+    cursor: pointer;
+    
+    span {
+        font-size: 24px;
+        &.freeSeat { color: #fff; }
+        &.reservedSeat { color: #ce4844; }
+        &.selectedSeat { color: #5cb85c; }
+    }
+
+    &:hover {
+        span.freeSeat {
+            color: #5cb85c;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.seating-grid {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.seat-box {
+    width: 30px;
+    height: 30px;
+    margin: 4px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid;
+
+    &.free {
+        background: #313131;
+        border-color: #44b449;
+        color: white;
+        &:hover { transform: scale(1.1); }
+    }
+
+    &.reserved {
+        background: #313131;
+        border-color: #ff0000;
+        color: white;
+        cursor: not-allowed;
+    }
+
+    &.selected {
+        background: #44b449;
+        border-color: #44b449;
+        color: white;
+    }
+}
+
+.row-label {
+    color: white;
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 8px;
+}
+
+.legend-box {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 10px;
+    
+    .box {
+        width: 20px;
+        height: 20px;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+    &.free .box { background: #313131;
+        border: 2px solid;
+        border-color: #44b449;
+        color: white; }
+    &.reserved .box { 
+        background: #141414;
+        border: 2px solid;
+        border-color: #ff0000;
+        color: white;}
+    &.selected .box { background: #44b449; }
+}
+
+.seats-required {
+    font-size: 14px;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.seat-box.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}

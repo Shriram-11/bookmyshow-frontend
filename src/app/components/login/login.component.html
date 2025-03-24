@@ -1,0 +1,17 @@
+<div class="popup">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="emailOrUsername" name="emailOrUsername" class="form-control" placeholder="Email or Username" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        @if (errorMessage) {
+            <div class="alert alert-danger">{{ errorMessage }}</div>
+        }
+        <button type="submit" class="btn btn-success w-100" [disabled]="isLoading">
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+        </button>
+    </form>
+</div>

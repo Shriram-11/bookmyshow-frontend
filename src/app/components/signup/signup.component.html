@@ -1,0 +1,35 @@
+<div class="popup">
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="userName" name="userName" class="form-control" placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="firstName" name="firstName" class="form-control" placeholder="First Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="lastName" name="lastName" class="form-control" placeholder="Last Name" required>
+        </div>
+        <div class="mb-3">
+            <input type="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="mb-3">
+            <input type="tel" [(ngModel)]="phoneNumber" name="phoneNumber" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="location" name="location" class="form-control" placeholder="Location" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+            <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
+        </div>
+        @if (errorMessage) {
+            <div class="alert alert-danger">{{ errorMessage }}</div>
+        }
+        <button type="submit" class="btn btn-success w-100" [disabled]="isLoading">
+            {{ isLoading ? 'Signing up...' : 'Sign Up' }}
+        </button>
+    </form>
+</div>

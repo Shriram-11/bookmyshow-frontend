@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Check if there are no movies -->
+    <div class="col-12" *ngIf="nomovies">
+      <div class="no-bookings">
+        <div class="text-center py-5">
+          <i class="fas fa-ticket-alt fa-3x mb-3 text-muted"></i>
+          <h3 class="text-muted">No Movies Found</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Display movies -->
+    <ng-container *ngIf="!nomovies">
+      <div class="col" *ngFor="let movie of movies | slice:0:displayCount">
+        <div class="card h-100">
+          <div class="image-container">
+            <img [src]="movie.posterUrl" class="movie-image" [alt]="movie.name">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{movie.name}}</h5>
+            <p class="card-text">{{movie.description}}</p>
+            <p class="card-text"><small>Cast: {{movie.cast}}</small></p>
+            <p class="card-text"><small>Genre: {{movie.genre}}</small></p>
+
+            
+            <button class="btn btn-primary book-now-btn" 
+                    (click)="onBookClick(movie.name)"
+                    [disabled]="!isBookingAllowed()"
+                    [title]="!isBookingAllowed() ? 'Please select a specific city to book tickets' : ''">
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Load More button -->
+    <div *ngIf="shouldShowLoadMore()" class="col-12">
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" (click)="loadMore()">
+          Load More Movies ({{movies.length - displayCount}} more)
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Rating Popup -->
+<div class="rating-popup" *ngIf="showRatingPopup" (click)="closeRatingPopup()">
+  <div class="rating-popup-content" (click)="$event.stopPropagation()">
+    <h3>Rate {{selectedMovie?.name}}</h3>
+    <div class="stars-container">
+      <i *ngFor="let star of [1,2,3,4,5]" 
+         class="fas fa-star" 
+         [class.active]="star <= hoverRating"
+         (mouseenter)="setHoverRating(star)"
+         (mouseleave)="setHoverRating(selectedMovie?.rating || 0)"
+         (click)="submitRating(star)">
+      </i>
+    </div>
+    <p class="rating-text">{{hoverRating ? hoverRating + ' out of 5' : 'Select rating'}}</p>
+    <button class="close-button" (click)="closeRatingPopup()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>

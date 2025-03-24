@@ -1,0 +1,351 @@
+.card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary i {
+  font-size: 14px;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.ticket-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.ticket-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 650px;
+  width: 90%;
+}
+
+.ticket-container {
+  display: flex;
+  padding: 10px;
+  background: #f8f8f8;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Ticket Styles */
+.retro-ticket {
+  width: 90%;
+  background: #f8e7c7; /* vintage paper color */
+  border: 1px solid #d4b483;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  font-family: 'Courier New', monospace;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 12px;
+    background-image: linear-gradient(90deg, 
+      transparent 0px, 
+      transparent 3px, 
+      #f8e7c7 3px, 
+      #f8e7c7 6px, 
+      transparent 6px, 
+      transparent 9px, 
+      #f8e7c7 9px);
+  }
+}
+
+.ticket-header {
+  background: #e02d2d; /* classic red */
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px dashed #d4b483;
+  
+  .cinema-name {
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  
+  .admit-one {
+    background: white;
+    color: #e02d2d;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+}
+
+.ticket-body {
+  padding: 15px;
+  
+  .movie-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px dotted #d4b483;
+    padding-bottom: 10px;
+  }
+}
+
+
+.ticket-info-left {
+  flex: 1;
+  padding-right: 15px;
+  
+  .info-row {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+    
+    span {
+      font-weight: bold;
+      display: inline-block;
+      width: 80px;
+    }
+  }
+}
+
+.ticket-info-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 15px;
+  border-left: 2px dotted #d4b483;
+  
+  .qr-code-wrapper {
+    padding: 8px;
+    background: white;
+    border: 1px solid #d4b483;
+  }
+  
+  .booking-id {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #666;
+  }
+}
+
+.ticket-footer {
+  background: #e02d2d;
+  color: white;
+  padding: 8px 15px;
+  text-align: center;
+  font-size: 12px;
+  border-top: 3px dashed #d4b483;
+  
+  .footer-text {
+    margin: 3px 0;
+  }
+}
+
+/* Ticket Stub Styles */
+.ticket-stub {
+  width: 25%;
+  background: #e02d2d;
+  color: white;
+  border: 1px solid #d4b483;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Courier New', monospace;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 12px;
+    background-image: linear-gradient(90deg, 
+      #e02d2d 0px, 
+      #e02d2d 3px, 
+      transparent 3px, 
+      transparent 6px, 
+      #e02d2d 6px, 
+      #e02d2d 9px);
+  }
+}
+
+.stub-content {
+  transform: rotate(90deg);
+  text-align: center;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.stub-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stub-details {
+  font-size: 12px;
+  margin-bottom: 8px;
+  
+  div {
+    margin: 3px 0;
+  }
+}
+
+.stub-id {
+  font-size: 10px;
+  background: white;
+  color: #e02d2d;
+  padding: 2px 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+/* Action Buttons */
+.ticket-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Additional Styling for Buttons */
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+.no-bookings {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.no-bookings i {
+  opacity: 0.5;
+}
+
+.no-bookings h3 {
+  margin-bottom: 0.5rem;
+}
+
+.ticket-modal {
+  overflow: visible; /* Ensure overflow doesn't hide child elements */
+}
+.ticket-content {
+  position: relative; /* Required for absolute positioning within */
+}
+
+/* Fix for ticket container positioning */
+.ticket-container {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  background: #f8f8f8;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+/* Fix for cancel button */
+.cancel-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s ease;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.cancel-btn:hover {
+  color: #e02d2d;
+  background: white;
+}

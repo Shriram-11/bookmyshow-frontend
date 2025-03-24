@@ -1,0 +1,48 @@
+<div class="booking-container" *ngIf="bookingDetails">
+  <button class="cancel-btn" (click)="cancel()">
+    <i class="fas fa-times"></i>
+  </button>
+  <div class="movie-info">
+    <h2>{{bookingDetails.movieName}}</h2>
+    <div class="show-details">
+      <div class="theatre">
+        <i class="fas fa-theater-masks"></i>
+        <span>{{bookingDetails.theatreName}}</span>
+      </div>
+      <div class="datetime">
+        <i class="far fa-calendar-alt"></i>
+        <span>{{bookingDetails.showDate}}</span>
+        <i class="far fa-clock"></i>
+        <span>{{bookingDetails.showTime}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="seat-selection">
+    <h3>How many seats?</h3>
+    <p class="available">Available: {{bookingDetails.availableSeats}} seats</p>
+    
+    <div class="seat-counter">
+      <button class="counter-btn" 
+              (click)="decreaseSeats()" 
+              [disabled]="selectedSeats <= 1">
+        <i class="fas fa-minus"></i>
+      </button>
+      <span class="seat-count">{{selectedSeats}}</span>
+      <button class="counter-btn" 
+              (click)="increaseSeats()" 
+              [disabled]="selectedSeats >= maxAllowedSeats">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <p class="max-info">Maximum {{maxAllowedSeats}} tickets per booking</p>
+  </div>
+
+  <div class="action-bar">
+    <button class="proceed-btn" 
+            (click)="proceedToSeatLayout()" 
+            [disabled]="!canProceed()">
+      Proceed to Seat Selection
+    </button>
+  </div>
+</div>

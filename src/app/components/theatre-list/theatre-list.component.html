@@ -1,0 +1,26 @@
+<div class="theatre-list-container">
+  <div class="btn-outline-primary" id="backbtn" (click)="goBack()">Back</div>
+  <h2>Available Shows</h2>
+  
+  <div class="theatre-cards">
+    <div class="theatre-card" *ngFor="let theatre of theatres">
+      <div class="theatre-info">
+        <h3>{{theatre.name}}</h3>
+        <p class="address">{{theatre.address}}</p>
+        
+        <div class="show-times" *ngIf="theatre.showTimes">
+          <div class="show-time" 
+               *ngFor="let show of theatre.showTimes" 
+               (click)="selectShow(theatre, show)"
+               [class.disabled]="!show.availableSeats || show.availableSeats === 0">
+            <div class="time">{{show.showTime}}</div>
+            <div class="date">{{show.showDate}}</div>
+            <div class="seats" [class.full]="!show.availableSeats || show.availableSeats === 0">
+              {{show.availableSeats === 0 ? 'HOUSEFULL' : show.availableSeats + ' seats available'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

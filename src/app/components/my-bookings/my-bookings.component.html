@@ -1,0 +1,103 @@
+<div class="container mt-4">
+  <div class="btn-outline-primary" id="backbtn" (click)="goBack()">Back</div>
+  <h2 class="mb-4">My Bookings</h2>
+  
+  <!-- Ticket View Modal -->
+  <div class="ticket-modal" *ngIf="isTicketView" (click)="closeTicketView()">
+    
+    <div class="ticket-content" (click)="$event.stopPropagation()">
+      <div class="ticket-container" *ngIf="selectedBooking" #ticketElement>
+        <button class="cancel-btn" (click)="closeTicketView()">
+          <i class="fas fa-times"></i>
+        </button>
+        <!-- Main Ticket -->
+        <div class="retro-ticket">
+          <!-- Ticket Header -->
+          <div class="ticket-header">
+            <div class="cinema-name">{{selectedBooking.theatreName}}</div>
+            <div class="admit-one">ADMIT {{selectedBooking.count}}</div>
+          </div>
+          
+          <!-- Ticket Body -->
+          <div class="ticket-body">
+            <div class="movie-title">{{selectedBooking.moviName}}</div>
+            
+            <div class="ticket-info-container">
+              <div class="ticket-info-left">
+                <div class="info-row"><span>DATE:</span> {{selectedBooking.showDate}}</div>
+                <div class="info-row"><span>TIME:</span> {{selectedBooking.showTime}}</div>
+                <div class="info-row"><span>THEATER:</span> {{selectedBooking.theatreName}}</div>
+                <div class="info-row"><span>LOCATION:</span> {{selectedBooking.theatreLocation}}</div>
+                <div class="info-row"><span>SEATS:</span> {{selectedBooking.seats}}</div>
+                <div class="info-row"><span>PRICE:</span> ₹{{selectedBooking.totalAmount}}</div>
+              </div>
+              
+              <div class="ticket-info-right">
+                <div class="qr-code-wrapper">
+                  <qrcode [qrdata]="selectedBooking.bookingId" [width]="120" [errorCorrectionLevel]="'M'"></qrcode>
+                </div>
+                <div class="booking-id">ID: {{selectedBooking.bookingId}}</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ticket Footer -->
+          <div class="ticket-footer">
+            <div class="footer-text">Booking Date: {{selectedBooking.bookingDate | date:'medium'}}</div>
+            <div class="footer-text">Thank you for booking with us!</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="ticket-actions mt-4">
+        <button class="btn btn-primary me-2" (click)="downloadTicket()">
+          <i class="fas fa-download"></i> Download Ticket
+        </button>
+        <button class="btn btn-secondary" (click)="closeTicketView()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Bookings Message -->
+  <div class="no-bookings" *ngIf="!bookings.length">
+    <div class="text-center py-5">
+      <i class="fas fa-ticket-alt fa-3x mb-3 text-muted"></i>
+      <h3 class="text-muted">No Bookings Found</h3>
+      <p class="text-muted">Looks like you haven't made any bookings yet.</p>
+    </div>
+  </div>
+
+  <!-- Booking Cards -->
+  <div class="row" *ngIf="bookings.length">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let booking of displayedBookings">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{booking.moviName}}</h5>
+          <p class="card-text">
+            <strong>Theater:</strong> {{booking.theatreName}}<br>
+            <strong>Location:</strong> {{booking.theatreLocation}}<br>
+            <strong>Show Date:</strong> {{booking.showDate}}<br>
+            <strong>Show Time:</strong> {{booking.showTime}}<br>
+            <strong>Seats:</strong> {{booking.seats}}<br>
+            <strong>Number of Tickets:</strong> {{booking.count}}<br>
+            <strong>Amount Paid:</strong> ₹{{booking.totalAmount}}
+          </p>
+          <p class="card-text"><small class="text-muted">Booked on: {{booking.bookingDate | date:'medium'}}</small></p>
+          <div class="card-actions">
+            <button class="btn btn-outline-secondary btn-sm" (click)="showTicketView(booking)">
+              <i class="fas fa-ticket-alt"></i> View Ticket
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load More Button -->
+  <div *ngIf="hasMoreBookings()" class="text-center mt-4 mb-4">
+    <button class="btn btn-primary" (click)="loadMore()">
+      Load More Bookings
+    </button>
+  </div>
+</div>
