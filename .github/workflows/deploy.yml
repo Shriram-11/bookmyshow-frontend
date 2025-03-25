@@ -19,9 +19,7 @@ on:
         type: choice
         options:
           - development
-          - staging
           - production
-          - actions
       build_configuration:
         description: 'Build configuration'
         required: false
