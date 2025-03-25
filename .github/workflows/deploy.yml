@@ -24,10 +24,7 @@ on:
         description: 'Build configuration'
         required: false
         default: 'production'
-        type: choice
-        options:
-          - Debug
-          - production
+        
 
 jobs:
   docker_build_push:
