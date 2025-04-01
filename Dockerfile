@@ -1,11 +1,11 @@
-WORKDIR /app
+
 FROM nginx:latest
 
 # Remove default Nginx static files
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the built Angular app to Nginx's HTML folder
-COPY --from=build /app/dist/bookmyshow-frontend/browser /usr/share/nginx/html
+COPY dist/bookmyshow-frontend/browser /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
