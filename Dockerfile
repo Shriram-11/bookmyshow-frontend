@@ -1,3 +1,4 @@
+WORKDIR /app
 FROM nginx:latest
 
 # Remove default Nginx static files
