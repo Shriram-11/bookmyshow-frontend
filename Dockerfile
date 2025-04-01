@@ -1,14 +1,14 @@
+# Build stage
+FROM node:18 AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build -- --configuration=production
 
+# Final stage
 FROM nginx:latest
-
-# Remove default Nginx static files
 RUN rm -rf /usr/share/nginx/html/*
-
-# Copy the built Angular app to Nginx's HTML folder
-COPY dist/bookmyshow-frontend/browser /usr/share/nginx/html
-
-# Expose port 80
+COPY --from=build /app/dist/bookmyshow-frontend/browser /usr/share/nginx/html
 EXPOSE 80
-
-# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
