@@ -12,18 +12,15 @@ on:
         required: false
         type: string
         default: '18.x'
-      build_configuration:
+      environment:
         required: false
         type: string
-        default: 'production'
+        default: 'dev'
+        description: 'Environment to build for (dev/prod)'
       image_tag:
         required: false
         type: string
         default: 'latest'
-      environment:
-        required: false
-        type: string
-        default: 'initializeactions'
     secrets:
       DOCKERHUB_TOKEN:
         required: true
@@ -34,44 +31,27 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.node_version }}
           cache: 'npm'
-      
       - name: Install dependencies
         run: npm i
-      
       - name: Build Angular application
-        run: npm run build -- --configuration=${{ inputs.build_configuration }}
-      
+        run: npm run build -- --configuration=${{ inputs.environment }}
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ inputs.dockerhub_username }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
       - name: Build Docker image
         run: |
           # Build with the specified tag
           docker build -t ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }} .
-          
-          # Also tag with git SHA for versioning/tracking
-          docker tag ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }} ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ github.sha }}
-          
-          # Add environment-specific tag if not using 'latest'
-          if [ "${{ inputs.image_tag }}" != "latest" ]; then
-            docker tag ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }} ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.environment }}-${{ inputs.image_tag }}
-          fi
-      
+          # Also tag with environment name and git SHA
+          docker tag ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }} ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.environment }}-${{ github.sha }}
       - name: Push Docker image
         run: |
           docker push ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.image_tag }}
-          
-          docker push ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ github.sha }}
-          
-          if [ "${{ inputs.image_tag }}" != "latest" ]; then
-            docker push ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.environment }}-${{ inputs.image_tag }}
-          fi
+          docker push ${{ inputs.dockerhub_username }}/${{ inputs.image_name }}:${{ inputs.environment }}-${{ github.sha }}
