@@ -15,15 +15,7 @@ on:
       environment:
         description: 'Deployment environment'
         required: false
-        default: 'actions'
-        type: choice
-        options:
-          - development
-          - production
-      build_configuration:
-        description: 'Build configuration'
-        required: false
-        default: 'production'
+        default: 'prod'
         
 
 jobs:
@@ -33,8 +25,7 @@ jobs:
       image_name: 'bookmymovie'
       dockerhub_username: 'shriram11'
       image_tag: ${{ github.event.inputs.image_tag || 'latest' }}
-      environment: ${{ github.event.inputs.environment || 'actions' }}
-      build_configuration: ${{ github.event.inputs.build_configuration || 'production' }}
+      environment: ${{ github.event.inputs.environment || 'prod' }}
       node_version: '18'
     secrets:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKER_HUB_TOKEN }}
