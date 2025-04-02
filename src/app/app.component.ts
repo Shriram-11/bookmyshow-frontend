@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavigationComponent } from './components/navigation/navigation.component';
-
+import { ConfigService } from "./services/config.service";
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -12,5 +12,5 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   `
 })
 export class AppComponent {
-  title = 'bookmyshow-frontend';
+   constructor(public configService: ConfigService) {}
 }
