@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'localhost'  // adjust this URL according to your backend
+  apiBaseUrl: 'localhost' , // adjust this URL according to your backend
   environmentName: 'production',
   APP_ID: "book-my-movie-prod",
+  API_URL:'localhost'
 };
