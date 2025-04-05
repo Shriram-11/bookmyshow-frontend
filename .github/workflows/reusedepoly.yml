@@ -39,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Build Angular application
-        run: npm run build -- --configuration=${{ inputs.environment }}
+        run: npm run build
       - name: Debug build output
         run: ls -la dist/bookmyshow-frontend/
       - name: Login to Docker Hub
