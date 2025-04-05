@@ -6,7 +6,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { TheatreLayoutComponent } from './components/theatre-layout/theatre-layout.component';
 import { HomeComponent } from './components/home/home.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
-
+import {NotFoundComponent} from './components/not-found/not-found.component'
 export const routes: Routes = [
   { path: '', component: MovieListComponent },
   { path: 'movies', component: MovieListComponent },
@@ -33,5 +33,9 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: ''
+  },
+  {
+    path:'not-found',
+    component: NotFoundComponent
   }
 ];
